@@ -34,6 +34,7 @@ public class Main {
             List<String> minRoute = RouteFinder.findCheapestRoute(adjacencyMatrix, length, numThreads);
             int cheapestCost = calculateRouteCost(adjacencyMatrix, minRoute);
 
+            // Вывод результата
             System.out.println("Cheapest cost: " + cheapestCost);
             System.out.println("Route: " + minRoute);
         } catch (IOException e) {
