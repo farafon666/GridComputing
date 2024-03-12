@@ -18,6 +18,7 @@ public class Main {
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
+            // Считываем размер матрицы
             int size = Integer.parseInt(br.readLine());
             int[][] adjacencyMatrix = new int[size][size];
             int row = 0;
