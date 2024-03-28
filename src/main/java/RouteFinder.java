@@ -16,6 +16,12 @@ public class RouteFinder {
         cityNames.put(1, "B");
         cityNames.put(2, "C");
         cityNames.put(3, "D");
+        cityNames.put(4, "E");
+        cityNames.put(5, "F");
+        cityNames.put(6, "G");
+        cityNames.put(7, "H");
+        cityNames.put(8, "I");
+        cityNames.put(9, "J");
     }
 
     // Метод для поиска наименьшего маршрута

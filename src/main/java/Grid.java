@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ForkJoinPool;
 
 public class Grid {
 
@@ -14,7 +15,7 @@ public class Grid {
 
         String inputFile = "src/main/resources/data.txt";
         int length = Integer.parseInt(args[0]);
-        int numThreads = 4;
+        int numThreads = calculateNumThreads(inputFile);
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
@@ -62,5 +63,16 @@ public class Grid {
             }
         }
         return -1;
+    }
+
+    // Метод для расчета количества потоков
+    private static int calculateNumThreads(String inputFile) {
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+            int size = Integer.parseInt(br.readLine());
+            return (int) Math.floor(Math.sqrt(size)); // Округлённый корень из общего числа городов
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ForkJoinPool.commonPool().getParallelism(); // Возвращаем количество доступных процессорных ядер по умолчанию в случае ошибки
     }
 }
