@@ -68,8 +68,10 @@ public class Grid {
     // Метод для расчета количества потоков
     private static int calculateNumThreads(String inputFile) {
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
-            int size = Integer.parseInt(br.readLine());
-            return (int) Math.floor(Math.sqrt(size)); // Округлённый корень из общего числа городов
+            int size = Integer.parseInt(br.readLine()); // Считываем размер матрицы
+            int availableProcessors = ForkJoinPool.commonPool().getParallelism(); // Количество доступных процессорных ядер
+
+            return Math.min((int) Math.floor(Math.sqrt(size)), availableProcessors); // Округлённый в меньшую сторону корень из общего числа городов
         } catch (IOException e) {
             e.printStackTrace();
         }
